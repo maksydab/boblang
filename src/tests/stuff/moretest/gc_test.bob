@@ -1,0 +1,100 @@
+print("gc_test")
+
+i = 0
+while i < 20000:
+    j = 0
+    print(i)
+    while j < 50000:
+        l = [j, j + 1, j + 2, j + 3, j + 4]
+        l2 = [j * 2, j * 3, j * 4]
+        d = {"a": j, "b": l, "c": l2}
+        s = str(j)
+        j = j + 1
+    i = i + 1
+
+#print("lists_and_dicts_done")
+#print("now onto classes")
+class Node:
+    func _init_(val):
+        self.val = val
+        self.children = []
+
+    func add_child(child):
+        children = self.children
+        children.append(child)
+
+    func sum_tree():
+        print("called sum tree")
+        total = self.val
+        #print("total:",total)
+        #print(self.val)
+        children = self.children
+        c = 0
+        #print("c:",c,"children len:",children.length)
+        while c < len(children):
+            #print("c",c)
+            child_node = children[c]
+            total = total + child_node.sum_tree()
+            c = c + 1
+        return total
+#print("node defined")
+k = 0
+while k < 100:
+    root = Node(k)
+    child_idx = 0
+    #print("k",k)
+    while child_idx < 50:
+        child = Node(k * 100 + child_idx)
+        grandchild = Node(k * 10000 + child_idx)
+        #print("after defining grandchild")
+        child.add_child(grandchild)
+        root.add_child(child)
+        child_idx = child_idx + 1
+        #print("childidx: "+child_idx)
+    #print("after loop")
+    result = root.sum_tree()
+    #print("after result")
+    k = k + 1
+
+print("tree_done")
+
+n = 0
+while n < 50:
+    m = 0
+    while m < 100:
+        deep = [0]
+        inner = deep
+        depth = 0
+        while depth < 30:
+            inner2 = [depth + 1]
+            inner.append(inner2)
+            inner = inner2
+            depth = depth + 1
+        m = m + 1
+    n = n + 1
+
+print("nested_lists_done")
+
+class A:
+    func _init_():
+        self.refs = []
+
+class B:
+    func _init_():
+        self.a_refs = []
+
+p = 0
+while p < 300:
+    q = 0
+    while q < 200:
+        a = A()
+        b = B()
+        refs = a.refs
+        refs.append(b)
+        a_refs = b.a_refs
+        a_refs.append(a)
+        q = q + 1
+    p = p + 1
+
+print("cycle_done")
+print("done")

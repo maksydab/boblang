@@ -1,0 +1,5 @@
+func greet(name):
+    return "Hello, " + name + "!"
+
+func add(a, b):
+    return a + b
